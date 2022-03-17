@@ -20,7 +20,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: "all",
         name: "company-all",
-        component: () => import("../view/company/companyAll"),
+        component: () => import("../view/company/companyAll/companyAll"),
       },
       {
         path: ":companyId",
@@ -35,17 +35,17 @@ const routes: RouteRecordRaw[] = [
               {
                 path: "all",
                 name: "project-all",
-                component: () => import("../view/company/project"),
+                component: () => import("../view/company/project/projectAll"),
               },
               {
                 path: ":projectId",
                 name: "projectId",
-                component: () => import("../view/company/project/projectmenu"),
+                component: () => import("../view/company/project/project"),
                 children: [
                   {
-                    path: "editer",
-                    name: "editer",
-                    component: () => import("../view/company/project/editer"),
+                    path: "editor",
+                    name: "editor",
+                    component: () => import("../view/company/project/editor"),
                   },
                 ],
               },

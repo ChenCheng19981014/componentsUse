@@ -1,21 +1,22 @@
 import { defineComponent, reactive, ref } from "vue";
-import router from "../../../../router";
+import router from "../../../router";
 
 export default defineComponent({
-  name: "projectMenu",
+  name: "companyAll",
   mounted() {},
   setup: () => () => com(),
 });
 
 const com = () => (
-  <div class="project-menu">
-    <h1>所有项目页</h1>
+  <div class="company-all">
+    <h1>所有公司页面</h1>
     <button
       onClick={() => {
-        router.push("/company/1/project/1/editor");
+        router.push("/company/1/project/all");
       }}
     >
-      大海则项目
+      无锡零拓
     </button>
+    <button>梦途科技</button>
   </div>
 );

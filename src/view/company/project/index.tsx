@@ -1,5 +1,5 @@
 import { defineComponent, reactive, ref } from "vue";
-import router from "../../../router";
+import { RouterView } from "vue-router";
 
 export default defineComponent({
   name: "project",
@@ -9,11 +9,6 @@ export default defineComponent({
 
 const com = () => (
   <div class="project">
-    <h1>项目一</h1>
-    <button
-      onClick={() => {
-        router.push("/company/all");
-      }}
-    ></button>
+    <RouterView></RouterView>
   </div>
 );

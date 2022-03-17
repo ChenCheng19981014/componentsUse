@@ -1,14 +1,14 @@
 import { defineComponent, reactive, ref } from "vue";
-import router from "../../../router";
 
 export default defineComponent({
-  name: "projectMenu",
+  name: "editor",
   mounted() {},
   setup: () => () => com(),
 });
 
 const com = () => (
-  <div class="project-menu">
-    <h1>单个页面</h1>
+  <div class="editor">
+    <h1>editer</h1>
+    <h2>编辑器</h2>
   </div>
 );

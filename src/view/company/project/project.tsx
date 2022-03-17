@@ -1,14 +1,15 @@
 import { defineComponent, reactive, ref } from "vue";
+import { RouterView } from "vue-router";
+import router from "../../../router";
 
 export default defineComponent({
-  name: "editer",
+  name: "project",
   mounted() {},
   setup: () => () => com(),
 });
 
 const com = () => (
-  <div class="editer">
-    <h1>editer</h1>
-    <h2>编辑器</h2>
+  <div class="project">
+    <RouterView></RouterView>
   </div>
 );
