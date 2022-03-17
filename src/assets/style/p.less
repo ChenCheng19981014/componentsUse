@@ -1,0 +1,155 @@
+.poa-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.flex-column-center {
+  display: flex;
+  align-items: center;
+}
+.flex-row-center {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-center {
+  .flex-column-center;
+  .flex-row-center;
+}
+.w {
+  width: 100%;
+}
+.h {
+  height: 100%;
+}
+.full {
+  .w;
+  .h;
+}
+.full-screen {
+  width: 100vw;
+  height: 100vh;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+.flex-row(@number,@bfb) {
+  flex: @number;
+  min-width: @bfb;
+  max-width: @bfb;
+  width: @bfb;
+}
+
+.flex-column(@number,@bfbNumber) {
+  flex: @number;
+  min-height: @bfbNumber;
+  max-height: @bfbNumber;
+  height: @bfbNumber;
+}
+
+.not_line_input {
+  .full;
+  outline: none;
+  border: 0 solid #000;
+  transition: all 0.3s;
+  border-radius: 5px;
+  // background-color: #eee;
+  &:hover {
+    background-color: #ccc;
+  }
+}
+
+img {
+  width: 80%;
+  height: 80%;
+}
+
+#app {
+  .full-screen;
+  overflow: hidden;
+}
+
+a {
+  outline: none;
+  color: black;
+  text-decoration: none;
+}
+
+.iconfont {
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
+// m - main
+@mColor: rgb(255, 255, 255);
+
+@mBgc: rgb(247, 247, 247);
+
+@mActive: rgb(242, 251, 255);
+
+@active2: rgb(27, 154, 238);
+.mBorder {
+  border-bottom: 1px solid rgb(229, 229, 229);
+}
+.subBorder {
+  border-bottom: 1px solid #ddd;
+}
+.cover {
+  img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+}
+
+.flex-c {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mBox {
+  border-radius: 10px;
+  background-color: @mColor;
+  overflow: hidden;
+  .shadow_2;
+}
+.subBox {
+  border-radius: 10px;
+  background-color: @mColor;
+  overflow: hidden;
+  transition: all 0.3s;
+  &:hover {
+    background-color: @mActive;
+  }
+}
+// a- active
+.aSubBox {
+  border-radius: 10px;
+  background-color: @mActive;
+  overflow: hidden;
+}
+
+.shadow_1 {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.shadow_2 {
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+}
+
+.dis {
+  cursor: not-allowed !important;
+}
+
+.n-config-provider {
+  .full;
+}

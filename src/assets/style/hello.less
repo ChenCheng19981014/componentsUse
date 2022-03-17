@@ -1,0 +1,43 @@
+@import "./p.less";
+.hello {
+  .full;
+  display: flex;
+  flex-direction: column;
+  .flex-c;
+  justify-content: center;
+  .content {
+    .flex-column(8.5,85%);
+    flex-direction: column;
+    display: flex;
+    overflow: hidden;
+    text-align: center;
+    align-items: center;
+    // padding: 2%;
+    > div {
+      display: flex;
+      .flex-row(6,60%);
+      .flex-column(2,20%);
+      align-items: center;
+      > h1 {
+        .flex-row(5,50%);
+      }
+      > h2 {
+        .flex-row(5,50%);
+      }
+    }
+  }
+  .page {
+    .flex-column(1.5,15%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .change-page {
+      .flex-column(10,100%);
+      .flex-row(6,60%);
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+    }
+  }
+}
