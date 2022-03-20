@@ -1,0 +1,83 @@
+@import "./p.less";
+
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.tree-menu {
+  .full;
+  display: flex;
+  flex-direction: column;
+  .title {
+    color: white;
+    .flex-column(0.5,5%);
+    display: flex;
+    font-size: 0.8em;
+    letter-spacing: 2px;
+    div {
+      flex: 1;
+      position: relative;
+      text-align: left;
+      align-items: center;
+      justify-content: center;
+      .title-next {
+        float: right;
+      }
+      span {
+        padding: 10px 0 10px 15px;
+        line-height: 35px;
+      }
+      > ul {
+        display: none;
+      }
+      &:hover {
+        background-color: #666;
+        > ul {
+          display: block;
+        }
+      }
+    }
+
+    > div {
+      cursor: pointer;
+      position: relative;
+      background-color: #333;
+      text-align: center;
+      > .title-next {
+        display: none;
+      }
+      > ul {
+        text-align: left;
+        left: 0 !important;
+        top: 100%;
+        border-radius: 0 0 10px 10px;
+      }
+      > span {
+        line-height: 45px;
+        padding: 0;
+      }
+    }
+
+    ul {
+      text-align: left;
+      top: 0%;
+      left: 100%;
+      width: 100%;
+      background-color: #333;
+      border-radius: 10px;
+      padding: 2px 0;
+      position: absolute;
+      li {
+        padding: 10px;
+        line-height: 15px;
+        padding: 10px 0 10px 15px;
+        &:hover {
+          cursor: pointer;
+          background-color: #666;
+        }
+      }
+    }
+  }
+}

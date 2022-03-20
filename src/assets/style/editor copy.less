@@ -1,0 +1,225 @@
+@import "../p.less";
+
+.projects {
+  .project-item {
+    .full;
+    .editor {
+      .full;
+    }
+  }
+  .editor {
+    display: flex;
+    flex-direction: column;
+    background-color: #333;
+    overflow: hidden;
+    color: white;
+    > .editor-title {
+      .flex-column(0.5,5%);
+      background-color: rgb(34, 39, 43);
+      display: flex;
+      justify-content: space-between;
+      > .title-user {
+        .flex-center;
+        .flex-row(2,20%);
+      }
+      > .title-menu {
+        .flex-center;
+        .flex-row(2,20%);
+        font-size: 0.8em;
+        letter-spacing: 2px;
+        display: flex;
+        div {
+          flex: 1;
+          position: relative;
+          .menu_item_more {
+            float: right;
+          }
+        }
+        div:hover {
+          background-color: #666;
+          > ul {
+            display: block;
+          }
+        }
+
+        > div {
+          cursor: pointer;
+          width: 90px;
+          background-color: rgb(34, 39, 43);
+          text-align: center;
+          cursor: pointer;
+          > ul {
+            left: 0 !important;
+            top: 30px;
+            border-radius: 0 0 10px 10px;
+          }
+          > span {
+            display: block;
+            width: 100%;
+            height: 100%;
+            line-height: 30px;
+          }
+          > .menu_item_more {
+            display: none;
+          }
+        }
+        ul {
+          text-align: left;
+          position: absolute;
+          top: 0px;
+          left: 150px;
+          min-width: 150px;
+          background-color: #333;
+          display: none;
+          padding: 5px 0;
+          border-radius: 10px;
+          div,
+          li {
+            padding: 10px;
+            line-height: 15px;
+          }
+          li:hover {
+            background-color: #666;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    > .editor-content {
+      display: flex;
+      .flex-column(9.5,95%);
+      > .editor-info-scene {
+        .flex-row(1.5,15%);
+        background-color: #999;
+        overflow: scroll;
+      }
+      > .content {
+        .flex-row(3,70%);
+        overflow: hidden;
+        background-color: #666;
+      }
+      > .editor-config {
+        .flex-row(1.5,15%);
+        background-color: #888;
+        display: flex;
+        flex-direction: column;
+        overflow: scroll;
+        .config-param {
+          font-size: 0.8em;
+          color: white;
+          .flex-column(6.5,65%);
+          background-color: rgb(17, 17, 17);
+          display: flex;
+          flex-direction: column;
+          > .param-title {
+            .flex-column(0.5,5%);
+            background-color: rgb(31, 34, 38);
+            .flex-center;
+          }
+          > .param-menu {
+            .flex-center;
+            .flex-column(0.7,7%);
+            display: flex;
+            .flex-row(10,100%);
+            > div {
+              .flex-center;
+              .flex-row(3.3,33%);
+            }
+          }
+          > .param-content {
+            .flex-column(8.8,88%);
+            background-color: rgb(31, 34, 38);
+          }
+        }
+
+        .config-material {
+          font-size: 0.8em;
+          color: white;
+          .flex-column(6.5,65%);
+          background-color: rgb(17, 17, 17);
+          display: flex;
+          flex-direction: column;
+          > .material-title {
+            .flex-column(0.5,5%);
+            background-color: rgb(31, 34, 38);
+            .flex-center;
+          }
+          > .material-menu {
+            .flex-center;
+            .flex-column(0.7,7%);
+            display: flex;
+            .flex-row(10,100%);
+            > div {
+              .flex-center;
+              .flex-row(3.3,33%);
+            }
+          }
+          > .material-content {
+            .flex-column(8.8,88%);
+            background-color: rgb(31, 34, 38);
+          }
+        }
+
+        .config-script {
+          font-size: 0.8em;
+          color: white;
+          .flex-column(6.5,65%);
+          background-color: rgb(17, 17, 17);
+          display: flex;
+          flex-direction: column;
+          > .script-title {
+            .flex-column(0.5,5%);
+            background-color: rgb(31, 34, 38);
+            .flex-center;
+          }
+          > .script-menu {
+            .flex-center;
+            .flex-column(0.7,7%);
+            display: flex;
+            .flex-row(10,100%);
+            > div {
+              .flex-center;
+              .flex-row(3.3,33%);
+            }
+          }
+          > .script-content {
+            .flex-column(8.8,88%);
+            background-color: rgb(31, 34, 38);
+          }
+        }
+
+        .config-state {
+          font-size: 0.8em;
+          color: white;
+          .flex-column(6.5,65%);
+          background-color: rgb(17, 17, 17);
+          display: flex;
+          flex-direction: column;
+          > .state-title {
+            .flex-column(0.5,5%);
+            background-color: rgb(31, 34, 38);
+            .flex-center;
+          }
+          > .state-menu {
+            .flex-center;
+            .flex-column(0.7,7%);
+            display: flex;
+            .flex-row(10,100%);
+            > div {
+              .flex-center;
+              .flex-row(3.3,33%);
+            }
+          }
+          > .state-content {
+            .flex-column(8.8,88%);
+            background-color: rgb(31, 34, 38);
+          }
+        }
+      }
+    }
+  }
+}
+
+.active_model {
+  background-color: rgb(100, 100, 100) !important;
+}

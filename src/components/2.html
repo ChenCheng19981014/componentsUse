@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>测试h5</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <div></div>
+
+  <body>
+    <script>
+      let entry = {
+        "a.b.c.dd": "abcdd",
+        "a.d.xx": "adxx",
+        "a.e": "ae",
+        a: "cc",
+      };
+
+      function deepRntery(entry) {
+        const fn = (key) => {
+          const value = entry[key];
+          const lastIndex = key.lastIndexOf(".");
+          if (lastIndex !== -1) {
+            delete entry[key];
+            const one = key.substring(0, lastIndex);
+            const two = key.substring(lastIndex + 1);
+            if (!entry[one]) entry[one] = { [two]: value };
+            entry[one][two] = value;
+            if (/./.test(one)) {
+              fn(one);
+            }
+          }
+        };
+        for (const key in entry) {
+          fn(key);
+        }
+        return entry;
+      }
+
+      function build(entry) {
+        let res = {};
+        Object.keys(entry).map((keys) => {
+          create(res, 0, keys.split("."), entry[keys]);
+        });
+        function create(parent, i, path, val) {
+          let cur = path[i];
+          if (i == path.length - 1) {
+            parent[cur] = val;
+            return;
+          }
+          if (!(cur in parent)) parent[cur] = {};
+          create(parent[cur], i + 1, path, val);
+        }
+        return res;
+      }
+
+      console.log(deepRntery(entry));
+      // console.log(build(entry));
+    </script>
+  </body>
+</html>

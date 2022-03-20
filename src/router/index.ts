@@ -4,8 +4,8 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/",
     name: "",
-    redirect: "/login",
-    // redirect: "/company/1/projects/1/editor",
+    // redirect: "/login",
+    redirect: "/company/1/projects/1/editor",
   },
   {
     path: "/login",
@@ -54,6 +54,18 @@ const routes: RouteRecordRaw[] = [
         ],
       },
     ],
+  },
+
+  {
+    path: "/tree",
+    name: "tree",
+    component: () => import("../view/DomTree/tree"),
+  },
+  {
+    path: "/domTree",
+    name: "domTree",
+    component: () => import("../view/DomTree/domTree"),
+    // redirect: "/company/1/projects/1/editor",
   },
 ];
 const router = createRouter({

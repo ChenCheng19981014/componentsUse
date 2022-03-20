@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>测试h5</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <div></div>
+
+  <body>
+    <script>
+      class A {
+        entry = {
+          "a.b.c.dd": "abcdd",
+          "a.d.xx": "adxx",
+          "a.e": "ae",
+          a: "cc",
+        };
+        value = [];
+        /*
+            a:{
+                b:{
+                    c：{
+                        dd:'abcdd'
+                    }
+                }
+            }
+            */
+        constructor() {
+          let result = this.deepRntery(this.entry);
+          console.log(result, "结果");
+        }
+        deepRntery(entery) {
+          return Object.keys(entery).map((i) => {
+            let oldMap = {};
+            oldMap[i.slice(i.lastIndexOf(".") + 1, i.length)] = entery[i];
+            if (i.slice(0, i.lastIndexOf(".")).length >= 1) {
+              let map = {};
+              map[i.slice(0, i.lastIndexOf("."))] = oldMap;
+              return { ...this.deepRntery(map) };
+            }
+            this.value.push({ ...oldMap });
+            return this.value;
+          });
+        }
+      }
+      let a = new A();
+    </script>
+  </body>
+</html>

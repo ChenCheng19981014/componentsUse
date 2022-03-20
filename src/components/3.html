@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>测试h5</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <div></div>
+
+  <body>
+    <script>
+      let entry = {
+        a: {
+          b: {
+            c: {
+              dd: "abcd",
+            },
+          },
+          d: {
+            ee: "d-ee",
+          },
+          f: "af",
+        },
+      };
+
+      function deepRntery(entry, key = " ", result = {}) {
+        Object.keys(entry).map((keys) => {
+          if (entry.hasOwnProperty(keys)) {
+            const newKey = `${key}${keys}`;
+            if (typeof entry[keys] === "object") {
+              deepRntery(entry[keys], `${newKey}.`, result);
+            } else {
+              result[newKey] = entry[keys];
+            }
+          }
+        });
+        return result;
+      }
+
+      console.log(deepRntery(entry));
+    </script>
+  </body>
+</html>
