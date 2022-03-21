@@ -28,26 +28,20 @@
       deepRntery(entery) {
         let obj = {};
         const fn = (key, value, obj) => {
-          const lastKeys = key.slice(key.lastIndexOf(".") + 1, key.length);
-          const newKeys = key.slice(0, key.lastIndexOf("."));
-          if (!lastKeys) return;
-          obj[lastKeys] = value;
-          const newObj = obj;
-          if (!lastKeys) return;
-          console.log(obj, 'obj---');
-          // console.log(Object.assign(obj), '++++');
-          return fn(newKeys, newObj, {});
+          const ls = key.split(".");
+          const newKeys = ls.shift();
+          console.log(newKeys, 'newKeys');
+          if (!newKeys) return;
+          const newValue = ls.length === 0 ? value : obj[newKeys] || {};
+          obj[newKeys] = newValue;
+          return fn(ls.join('.'), value, newValue)
         };
 
         for (const key in this.entry) {
           const value = this.entry[key];
           fn(key, value, obj);
         }
-        // Object.keys(entery).map((key) => {
-        //   const value = this.entry[key];
-        //   fn(key, value, obj);
-        // });
-        // console.log(obj, 'obj');
+        console.log(obj, 'obj');
         return obj;
       }
     }
