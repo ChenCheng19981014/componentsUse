@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>测试h5</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <div></div>
+  <body>
+    <script>
+      let entry = {
+        "a.b.c.dd": "abcdd",
+        "a.d.xx": "adxx",
+        "a.e": "ae",
+        //   a: "cc",
+      };
+
+      const openMenu = () => {
+        const newObj = {};
+        const deep = (key, value, newObj) => {
+          const arr = key.split(".");
+          const newKey = arr.shift();
+          if (!newKey) return;
+          const newVal = arr.length === 0 ? value : newObj[newKey] || {};
+          newObj[newKey] = newVal;
+          return deep(arr.join("."), value, newObj);
+        };
+        Object.keys(entry).map((key) => {
+          const value = entry[key];
+          deep(key, value, newObj);
+        });
+        console.log(newObj, "map---");
+      };
+      openMenu();
+
+      /*
+        相当于
+
+      */
+    </script>
+  </body>
+</html>

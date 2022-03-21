@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>测试h5</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <div></div>
+
+  <body>
+    <script>
+      class A {
+        entry = {
+          "a.b.c.dd": "abcdd",
+          "a.d.xx": "adxx",
+          "a.e": "ae",
+        };
+
+        constructor() {
+          let result = this.deepRntery(this.entry);
+          // console.log(result, "结果");
+        }
+        deepRntery(entery) {
+          let map = {};
+          const fn = (key, value, map) => {
+            const lastKeys = key.slice(key.lastIndexOf(".") + 1, key.length);
+            const newKeys = key.slice(0, key.lastIndexOf("."));
+            if (!lastKeys) return;
+            map[lastKeys] = value;
+            const newValue = map[lastKeys];
+            console.log(newKeys, "newKeys--");
+            return fn(newKeys, map[lastKeys], map);
+          };
+          Object.keys(entery).map((key) => {
+            const value = this.entry[key];
+            fn(key, value, map);
+          });
+          console.log(map, "map---");
+          return map;
+        }
+      }
+      let a = new A();
+    </script>
+  </body>
+</html>
