@@ -65,6 +65,11 @@ const routes: RouteRecordRaw[] = [
     path: "/domTree",
     name: "domTree",
     component: () => import("../view/DomTree/domTree"),
+  },
+  {
+    path: "/tab",
+    name: "tab",
+    component: () => import("../view/tab/tab"),
     // redirect: "/company/1/projects/1/editor",
   },
 ];

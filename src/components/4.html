@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>测试h5</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <div></div>
+  <body>
+    <script>
+      let entry = {
+        "a.b.c.dd": "abcdd",
+        "a.d.xx": "adxx",
+        "a.e": "ae",
+        //   a: "cc",
+      };
+
+      const openMenu = () => {
+        const map = {};
+        const setMap = (key, map, val) => {
+          //a b c dd
+          const ls = key.split(".");
+          //a
+          const newKey = ls.shift();
+          if (!newKey) return;
+          // a = {}
+          const newVal = ls.length === 0 ? val : map[newKey] || {};
+          map[newKey] = newVal;
+          return setMap(ls.join("."), newVal, val);
+        };
+        Object.keys(entry).map((key) => {
+          const val = entry[key];
+          setMap(key, map, val);
+        });
+        console.log(map, "map");
+        // console.log(JSON.stringify(map), "JSON.stringify(map)");
+      };
+      openMenu();
+    </script>
+  </body>
+</html>

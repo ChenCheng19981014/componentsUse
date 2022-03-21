@@ -1,0 +1,36 @@
+@import "../login.less";
+
+.title {
+  .flex-row(10,100%);
+  .flex-column(10,100%);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  > p {
+    .flex-center;
+    .flex-row(5.5,55%);
+    justify-content: right;
+  }
+  > i {
+    .flex-row(1, 10%);
+    font-size: 1.5em;
+    .flex-center;
+  }
+}
+
+.menu {
+  .flex-row(10,100%) !important;
+  .flex-column(10,100%) !important;
+  display: flex;
+  justify-content: space-between;
+  > div {
+    flex: 1;
+    .full;
+    .flex-center;
+  }
+}
+
+.select {
+  border-radius: 10px;
+  background-color: rgb(27, 30, 34);
+}
