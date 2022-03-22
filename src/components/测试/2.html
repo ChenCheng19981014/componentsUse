@@ -23,6 +23,7 @@
 
       function deepRntery(entry) {
         const fn = (key) => {
+          // 每次进来的
           const value = entry[key];
           const lastIndex = key.lastIndexOf(".");
           if (lastIndex !== -1) {
@@ -31,7 +32,9 @@
             const two = key.substring(lastIndex + 1);
             if (!entry[one]) entry[one] = { [two]: value };
             entry[one][two] = value;
-            if (/./.test(one)) {
+            // a.b.c:{dd:'abcdd'}
+            console.log(entry, "entry---");
+            if (one) {
               fn(one);
             }
           }

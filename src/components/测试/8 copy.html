@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>测试h5</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <div></div>
+
+  <body>
+    <script>
+      /*
+            const  data =
+      [
+        {id:"01", name: "张大大", pid:"", job: "项目经理"},
+        {id:"02", name: "小亮", pid:"01", job: "产品leader"},
+        {id:"03", name: "小美", pid:"01", job: "UIleader"},
+        {id:"04", name: "老马", pid:"01", job: "技术leader"},
+        {id:"05", name: "老王", pid:"01", job: "测试leader"},
+        {id:"06", name: "老李", pid:"01", job: "运维leader"},
+        {id:"07", name: "小丽", pid:"02", job: "产品经理"},
+        {id:"08", name: "大光", pid:"02", job: "产品经理"},
+        {id:"09", name: "小高", pid:"03", job: "UI设计师"},
+        {id:"10", name: "小刘", pid:"04", job: "前端工程师"},
+        {id:"11", name: "小华", pid:"04", job: "后端工程师"},
+        {id:"12", name: "小李", pid:"04", job: "后端工程师"},
+        {id:"13", name: "小赵", pid:"05", job: "测试工程师"},
+        {id:"14", name: "小强", pid:"05", job: "测试工程师"},
+        {id:"15", name: "小涛", pid:"06", job: "运维工程师"}
+      ]
+      转换为：
+      data: [{
+              label: '张大大',
+              children: [
+                {
+                	label: '小亮',
+                	children: [{label: '小丽'}，{label: '大光'}]
+              	},
+                {
+                	label: '小美',
+                	children: [{label: '小高'}]
+              	},
+                {
+                	label: '老马',
+                	children: [{label: '小刘'}，{label: '小华'},{label: '小李'}]
+              	},
+                {
+                	label: '老王',
+                	children: [{label: '小赵'}，{label: '小强'}]
+              	},
+                {
+                	label: '老李',
+                	children: [{label: '小涛'}]
+              	}
+            	]
+            }]
+
+             */
+      class A {
+        data = [
+          { id: "01", name: "张大大", pid: "", job: "项目经理" },
+          { id: "02", name: "小亮", pid: "01", job: "产品leader" },
+          { id: "03", name: "小美", pid: "01", job: "UIleader" },
+          { id: "04", name: "老马", pid: "01", job: "技术leader" },
+          { id: "05", name: "老王", pid: "01", job: "测试leader" },
+          { id: "06", name: "老李", pid: "01", job: "运维leader" },
+          { id: "07", name: "小丽", pid: "02", job: "产品经理" },
+          { id: "08", name: "大光", pid: "02", job: "产品经理" },
+          { id: "09", name: "小高", pid: "03", job: "UI设计师" },
+          { id: "10", name: "小刘", pid: "04", job: "前端工程师" },
+          { id: "11", name: "小华", pid: "04", job: "后端工程师" },
+          { id: "12", name: "小李", pid: "04", job: "后端工程师" },
+          { id: "13", name: "小赵", pid: "05", job: "测试工程师" },
+          { id: "14", name: "小强", pid: "05", job: "测试工程师" },
+          { id: "15", name: "小涛", pid: "06", job: "运维工程师" },
+        ];
+        newData = [];
+        constructor() {
+          let rs = this.deepData(this.data);
+          let res = this.deepMap(rs);
+          let val = this.deepRes([res]);
+          console.log(val, "最后的结果~~~");
+        }
+        deepData(data) {
+          const newMap = {};
+          data.map((i, index) => {
+            const { id, pid } = i;
+            newMap[id] = i;
+          });
+          Object.keys(newMap).map((key) => {
+            newMap[key]["children"] = [];
+            data.map((item) => {
+              const { id, name, pid, iob } = item;
+              if (pid === key) {
+                delete item["id"];
+                delete item["pid"];
+                delete item["job"];
+                item["label"] = item.name;
+                delete item["name"];
+                newMap[key]["children"].push(item);
+              }
+            });
+          });
+          return newMap["01"];
+        }
+        deepMap(rs) {
+          let newDate = [];
+          delete rs["id"];
+          delete rs["pid"];
+          delete rs["job"];
+          rs["label"] = rs.name;
+          delete rs["name"];
+          return rs;
+        }
+        deepRes(res) {
+          const fn = (res) => {
+            if (!res) return;
+            res.map((i) => {
+              if (i.children) {
+                i.children.length === 0 ? delete i["children"] : "";
+                return fn(i.children);
+              }
+            });
+          };
+          fn(res);
+          return res;
+        }
+      }
+      let a = new A();
+    </script>
+  </body>
+</html>
