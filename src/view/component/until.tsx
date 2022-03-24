@@ -1,5 +1,5 @@
-import { ref } from "vue";
-import "../../assets/style/untils/until.less";
+import { ref } from 'vue';
+import '../../assets/style/untils/until.less';
 
 // 工具组件
 class Untils {
@@ -9,56 +9,38 @@ class Untils {
       <div class="title">
         <p>{name}</p>
         <i
-          class={isShow ? "iconfont icon-unfolded-s" : "iconfont icon-shouqi"}
+          class={isShow ? 'iconfont icon-unfolded-s' : 'iconfont icon-shouqi'}
         ></i>
       </div>
     );
   }
 
   menu(nameList: any) {
-    const select = ref(nameList[0]);
-    const dom = () => (
-      <div>
-        {nameList.map((tab: any) => {
-          return (
-            <div
-              onClick={() => {
-                select.value = tab;
-              }}
-            >
-              {tab}
-            </div>
-          );
-        })}
-      </div>
-    );
+    const selectVal = ref(nameList[0]);
+    const dom = () => {
+      return (
+        <>
+          {nameList.map((item: any) => {
+            return (
+              <div
+                onClick={() => {
+                  selectVal.value = item;
+                  console.log(selectVal.value, 'selectVal.value');
+                }}
+                class={item === selectVal.value ? 'select' : ''}
+              >
+                {item}
+              </div>
+            );
+          })}
+        </>
+      );
+    };
+    return {
+      selectVal,
+      dom,
+    };
   }
-
-  // 菜单组件
-  // menu(nameList: any) {
-  //   // 选中的属性
-  //   const select = ref(nameList[0]);
-  //   const dom = () => (
-  //     <div class="menu">
-  //       {nameList.map((i: string) => {
-  //         return (
-  //           <div
-  //             onClick={() => {
-  //               select.value = i;
-  //             }}
-  //             class={select.value === i ? "select" : ""}
-  //           >
-  //             {i}
-  //           </div>
-  //         );
-  //       })}
-  //     </div>
-  //   );
-  //   return {
-  //     select,
-  //     dom,
-  //   };
-  // }
 
   // 属性组件
   attribute(name: string) {}
