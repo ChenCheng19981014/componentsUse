@@ -1,4 +1,5 @@
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
+import tool from '../../components/untils';
 import until from '../component/until';
 import './../../assets/style/tab.less';
 
@@ -28,6 +29,8 @@ const config = {
   },
 };
 
+const imgUrl = ref('');
+
 // 编辑器页面
 export default defineComponent({
   name: 'tab',
@@ -35,20 +38,37 @@ export default defineComponent({
     return (
       <div class="tab">
         <div class="tab-change1 menu">
-        <p>{config.data.param.com.selectVal.value}</p>
+          <p>{config.data.param.com.selectVal.value}</p>
           {config.data.param.com.dom()}
         </div>
         <div class="tab-change2 menu">
-        <p>{config.data.material.com.selectVal.value}</p>
+          <p>{config.data.material.com.selectVal.value}</p>
           {config.data.material.com.dom()}
         </div>
         <div class="tab-change3 menu">
-        <p>{config.data.script.com.selectVal.value}</p>
+          <p>{config.data.script.com.selectVal.value}</p>
           {config.data.script.com.dom()}
         </div>
         <div class="tab-change4 menu">
-        <p>{config.data.state.com.selectVal.value}</p>
+          <p>{config.data.state.com.selectVal.value}</p>
           {config.data.state.com.dom()}
+        </div>
+        <div class="select-picture">
+          <button
+            onClick={() => {
+              tool.getImage.target((files) => {
+                if (files.length < 0) return;
+                let reader = new FileReader();
+                reader.readAsDataURL(files[0]);
+                reader.onload = () => {
+                  imgUrl.value = reader?.result as any;
+                };
+              });
+            }}
+          >
+            选择图片
+          </button>
+          <img src={`${imgUrl.value ? imgUrl.value : ''}`} alt="" />
         </div>
       </div>
     );
