@@ -31,6 +31,19 @@ const config = {
 
 const imgUrl = ref('');
 
+//将base64转换为文件
+const dataURLtoFile = (dataurl: any, filename: any) => {
+  var arr = dataurl.split(','),
+    mime = arr[0].match(/:(.*?);/)[1],
+    bstr = atob(arr[1]),
+    n = bstr.length,
+    u8arr = new Uint8Array(n);
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+  return new File([u8arr], filename, { type: mime });
+};
+
 // 编辑器页面
 export default defineComponent({
   name: 'tab',
@@ -62,6 +75,9 @@ export default defineComponent({
                 reader.readAsDataURL(files[0]);
                 reader.onload = () => {
                   imgUrl.value = reader?.result as any;
+                  // console.log(imgUrl.value,'imgUrl.value');
+                  let img = dataURLtoFile(imgUrl.value, 'cc');
+                  console.log(img, 'img');
                 };
               });
             }}
