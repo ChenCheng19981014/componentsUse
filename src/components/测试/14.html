@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>元素拖拽</title>
+    <style>
+      #dv {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        /* border-radius:50%; */
+        position: absolute;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="dv"></div>
+    <script>
+      var dv = document.getElementById("dv");
+      var x = 0;
+      var y = 0;
+      var l = 0;
+      var t = 0;
+      var isDown = false;
+      //鼠标按下事件
+      dv.onmousedown = function (e) {
+        //鼠标获取x坐标和y坐标
+        x = e.clientX;
+        y = e.clientY;
+        // console.log('一开始鼠标的坐标'+x);
+        // console.log('一开始鼠标的坐标'+y);
+        //获取左部和顶部的偏移量
+        l = dv.offsetLeft;
+        t = dv.offsetTop;
+
+        //开关打开
+        isDown = true;
+      };
+      //鼠标移动
+      window.onmousemove = function (e) {
+        if (isDown == false) {
+          return;
+        }
+        //获取x和y
+        var nx = e.clientX;
+        var ny = e.clientY;
+        //计算移动后的左偏移量和顶部的偏移量
+        //nx-x算的是是移动了多少，加上l之后的结果就是此时div的左部的偏移量（坐标）
+        var nl = nx - x + l;
+        var nt = ny - y + t;
+        dv.style.left = nl + "px";
+        dv.style.top = nt + "px";
+      };
+      //鼠标抬起事件
+      dv.onmouseup = function () {
+        //开关关闭
+        isDown = false;
+      };
+    </script>
+  </body>
+</html>

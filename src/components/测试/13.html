@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>测试h5</title>
+  </head>
+  <link
+    rel="stylesheet"
+    href="//at.alicdn.com/t/font_3298734_4hsve8z329m.css"
+  />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .a {
+      width: 100%;
+      height: 100%;
+      bottom: 0px;
+      position: relative;
+      background-color: #666;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    .b {
+      width: 500px;
+      height: 250px;
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      transform: translate(-50%, 0%);
+      background-color: #777;
+      float: left;
+    }
+    .c {
+      width: 100%;
+      float: left;
+      height: 10px;
+      text-align: center;
+      background-color: #888;
+      cursor: n-resize;
+    }
+  </style>
+  <div class="a">
+    <div class="b">
+      <div class="c">title</div>
+    </div>
+  </div>
+  <body>
+    <script>
+      (() => {
+        let isDown = false;
+        let aDom = document.querySelector(".a");
+        let bDom = document.querySelector(".b");
+        let cDom = document.querySelector(".c");
+        const { bottom, height, left, right, top, width, x, y } =
+          document.body.getBoundingClientRect();
+        aDom.onmousedown = (e) => {
+          isDown = true;
+        };
+        aDom.onmousemove = (e) => {
+          let { offsetY, clientY } = e;
+          if (!isDown) return;
+          console.log(e, "e");
+          console.log(offsetY, clientY);
+          if (height - e.clientY <= 10) {
+            bDom.style.height = `10px`;
+          } else {
+            bDom.style.height = `${height - e.clientY}px`;
+          }
+        };
+        aDom.onmouseup = () => {
+          //开关关闭
+          isDown = false;
+        };
+      })();
+    </script>
+  </body>
+</html>
