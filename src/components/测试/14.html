@@ -17,12 +17,23 @@
   <body>
     <div id="dv"></div>
     <script>
+      (() => {
+        class MoveDom {
+          constructor() {}
+        }
+        const com = document.getElementById("dv");
+
+        let moveDom = new MoveDom();
+      })();
+
       var dv = document.getElementById("dv");
       var x = 0;
       var y = 0;
       var l = 0;
       var t = 0;
       var isDown = false;
+      var oldLeft;
+      var oldTop;
       //鼠标按下事件
       dv.onmousedown = function (e) {
         //鼠标获取x坐标和y坐标
@@ -33,6 +44,9 @@
         //获取左部和顶部的偏移量
         l = dv.offsetLeft;
         t = dv.offsetTop;
+
+        oldLeft = e.offsetX;
+        oldTop = e.offsetY;
 
         //开关打开
         isDown = true;
@@ -49,8 +63,10 @@
         //nx-x算的是是移动了多少，加上l之后的结果就是此时div的左部的偏移量（坐标）
         var nl = nx - x + l;
         var nt = ny - y + t;
-        dv.style.left = nl + "px";
-        dv.style.top = nt + "px";
+        dv.style.left = nx + "px";
+        dv.style.top = ny + "px";
+        // dv.style.left = nx - oldLeft + "px";
+        // dv.style.top = ny - oldTop + "px";
       };
       //鼠标抬起事件
       dv.onmouseup = function () {

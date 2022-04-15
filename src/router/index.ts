@@ -72,6 +72,12 @@ const routes: RouteRecordRaw[] = [
     component: () => import("../view/tab/tab"),
     // redirect: "/company/1/projects/1/editor",
   },
+  {
+    path: "/move",
+    name: "move",
+    component: () => import("../view/dom/move-dom"),
+    // redirect: "/company/1/projects/1/editor",
+  },
 ];
 const router = createRouter({
   history: createWebHashHistory(),
