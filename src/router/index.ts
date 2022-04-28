@@ -78,6 +78,11 @@ const routes: RouteRecordRaw[] = [
     component: () => import("../view/dom/move-dom"),
     // redirect: "/company/1/projects/1/editor",
   },
+  {
+    path: "/time-line",
+    name: "time-line",
+    component: () => import("../view/timeLine"),
+  },
 ];
 const router = createRouter({
   history: createWebHashHistory(),
