@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>测试h5</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <div></div>
+  <body>
+    <script>
+      (() => {
+        let newProxy = new Proxy(
+          {},
+          {
+            get: (target, property) => {
+              console.log(property, "property---");
+              return (attr = {}, ...children) => {
+                console.log(attr, ...children, "...");
+              };
+            },
+            set: () => {},
+          }
+        );
+        let dom = newProxy.div({ id: "cc" }, "我是陈诚", "么么哒");
+      })();
+    </script>
+  </body>
+</html>

@@ -221,8 +221,8 @@ export default defineComponent({
       d.reset();
       setTimeout(() => {
         d.init([0.1, 0.2, 0.5, 0.7, 0.9]);
-      }, 2000);
-    }, 2000);
+      }, 1000);
+    }, 1000);
   },
   setup: () => () => coms(),
 });

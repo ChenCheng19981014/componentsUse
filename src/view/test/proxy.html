@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>测试h5</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <div></div>
+  <body>
+    <script>
+      (() => {
+        let a = { name: "cc", age: 24 };
+        let p = new Proxy(a, {
+          get: (target, obj) => {
+            return target[obj];
+          },
+          set: (target, k, v) => {
+            console.log(target, k, v, "target,k,v");
+            target[k] = v;
+            if (k === "age" && target[k] >= 30) {
+              trigerr();
+              return;
+            }
+          },
+        });
+        console.log(p.name, "第一次打印");
+        setTimeout(() => {
+          p.name = "夏卫艳";
+          let timer = setInterval(() => {
+            p.age++;
+            console.log(p.age, "年龄");
+            if (p.age >= 30) clearInterval(timer);
+          }, 1000);
+          console.log(p.name, "第二次打印");
+        }, 3000);
+
+        let trigerr = () => {
+          console.log("我被触发了~~~");
+        };
+      })();
+    </script>
+  </body>
+</html>

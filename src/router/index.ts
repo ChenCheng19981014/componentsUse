@@ -83,6 +83,11 @@ const routes: RouteRecordRaw[] = [
     name: "time-line",
     component: () => import("../view/timeLine"),
   },
+  {
+    path: "/texture",
+    name: "texture",
+    component: () => import("../view/component/texture"),
+  },
 ];
 const router = createRouter({
   history: createWebHashHistory(),

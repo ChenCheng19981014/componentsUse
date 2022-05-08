@@ -14,7 +14,7 @@ export default defineComponent({
     ];
     const canvas = document.querySelector(".canvas");
     new MoveDom(domList, canvas);
-  },
+  },·
   setup: () => () => {
     return (
       <div class="canvas">
