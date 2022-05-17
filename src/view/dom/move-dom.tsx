@@ -1,11 +1,54 @@
 import { defineComponent } from "vue";
 import "./../../assets/style/move-dom.less";
+// import { NodeEditor } from "../../../../node-editor/index";
+import gsap from "gsap";
 
 // 编辑器页面
 export default defineComponent({
   name: "moveDom",
   mounted() {
+    // new NodeEditor(document.querySelector(".canvas") as HTMLElement);
     const dom = document.querySelector(".dom1");
+
+    (() => {
+      let onUpdate = (_: any) => {
+        console.log(_, "修改的值");
+      };
+
+      let a = () => {
+        let infoStart = { left: 0 };
+        // let newBegin = Object.assign({}, infoStart);
+        let tween = gsap
+          ?.to(infoStart, 2, { left: 50 })
+          .eventCallback("onUpdate", (_) => {
+            console.log(infoStart, "infoStart");
+          })
+          .eventCallback("onComplete", (_) => {
+            console.log("结束");
+            gsap.killTweensOf(tween);
+            // tween = null | undefined;
+          });
+        return tween;
+      };
+      let aName = a().repeat(2).repeatDelay(1);
+      console.log(aName, "A");
+    })();
+
+    let G = new Gasp(dom);
+
+    // G.anima(
+    //   {
+    //     go: 0,
+    //   },
+    //   { to: 500 },
+    //   3,
+    //   (data: any) => {
+    //     console.log(data.to, "data----");
+    //     gsap.dom.style.left = data.to + "px";
+    //   },
+    //   () => {}
+    // );
+
     const domList = [
       document.querySelector(".dom1"),
       document.querySelector(".dom2"),
@@ -13,7 +56,7 @@ export default defineComponent({
       document.querySelector(".dom4"),
     ];
     const canvas = document.querySelector(".canvas");
-    new MoveDom(domList, canvas);
+    // new MoveDom(domList, canvas);
   },
   setup: () => () => {
     return (
@@ -26,6 +69,26 @@ export default defineComponent({
     );
   },
 });
+
+class Gasp {
+  dom: null | undefined;
+  constructor(dom: any) {
+    this.dom = dom;
+  }
+  anima(begin: any, end: any, time: any, onUpdate: any, onComplete: any) {
+    let newBegin = Object.assign({}, begin);
+    // console.log(newBegin, end, "newBegin");
+    let tween = gsap
+      .to(newBegin, time, end)
+      .eventCallback("onUpdate", (_) => onUpdate && onUpdate(newBegin))
+      .eventCallback("onComplete", (_) => {
+        onComplete && onComplete();
+        gsap.killTweensOf(tween);
+        // tween = null | undefined;
+      });
+    return tween;
+  }
+}
 
 class MoveDom {
   //   dom: HTMLElement | null | Element;

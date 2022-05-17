@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>节流</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .jl {
+      position: absolute;
+    }
+  </style>
+  <div>
+    <button class="jl">节流</button>
+  </div>
+  <body>
+    <script>
+      (() => {
+        class A {
+          jlDom = document.querySelector(".jl");
+          timer;
+          count = true;
+          constructor() {
+            if (!this.jlFn || !this.jlDom) return;
+            this.jlDom.addEventListener("click", () => {
+              this.jlFn(this.fn, 2000);
+            });
+          }
+          jlFn(fn, delay) {
+            let timer;
+            console.log(1, "1");
+            return function () {
+              console.log(123, "123");
+              if (timer) {
+                return;
+              }
+              // 每次调用都指定timeout后再执行
+              timer = setTimeout(() => {
+                timer = null;
+                console.log(123);
+                fn();
+              }, delay);
+            };
+          }
+          fn = () => {
+            console.log("节流是否成功~~~");
+          };
+        }
+
+        let a = new A();
+      })();
+    </script>
+  </body>
+</html>

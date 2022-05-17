@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>防抖</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .fd {
+      position: absolute;
+    }
+  </style>
+  <div>
+    <button class="fd">防抖</button>
+  </div>
+  <body>
+    <script>
+      (() => {
+        class A {
+          fdDom = document.querySelector(".fd");
+          timer;
+          constructor() {
+            if (!this.fdFn || !this.fdDom) return;
+            this.fdDom.addEventListener("click", () => {
+              this.fdFn(this.fn, 2000);
+            });
+          }
+          fdFn = (fn, delay) => {
+            if (this.timer) clearTimeout(this.timer);
+            this.timer = setTimeout(() => fn(), delay);
+          };
+          fn = () => {
+            console.log("防抖是否成功~~~");
+          };
+        }
+
+        let a = new A();
+      })();
+    </script>
+  </body>
+</html>
