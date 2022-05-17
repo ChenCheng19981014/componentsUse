@@ -98,27 +98,28 @@ class MoveDom {
   parentOffsetTop = 0;
   isDown = false;
   domList: any | null;
-  map: any;
+  mouseOffsetX: any | null;
+  mouseOffsetY: any | null;
+  map: { [type: string]: string } | any | null;
+  dom: any | null;
   constructor(domList: any | null, parentDom: any | null) {
     this.domList = domList;
     this.parentDom = parentDom;
     console.log(this.domList, "domList");
     this.domList.map((doms: any) => {
-      this.map[doms.className] = doms;
-      console.log(doms, "doms");
       doms.addEventListener("mousedown", (e: any) => {
         this.down(e, doms);
       });
-      console.log(this.map, "map");
     });
-    // this.init();
+    this.init();
   }
   down(e: any, dom: any) {
+    e.stopPropagation();
+    e.preventDefault();
     // 鼠标按下事件
-    // this.mouseOffsetX = e.offsetX;
-    // this.mouseOffsetY = e.offsetY;
-    console.log(this.map, "map");
-
+    this.mouseOffsetX = e.offsetX;
+    this.mouseOffsetY = e.offsetY;
+    this.dom = dom;
     //开关打开
     this.isDown = true;
   }
@@ -145,10 +146,15 @@ class MoveDom {
       }
       this.dom.style.top = top + "px";
       this.dom.style.left = left + "px";
+
+      if (!this.dom) return;
+      this.dom.onmouseup = () => {
+        //开关关闭
+        this.isDown = false;
+      };
     };
 
-    this.dom.onmouseup = () => {
-      //开关关闭
+    window.onmouseup = (e: any) => {
       this.isDown = false;
     };
   }

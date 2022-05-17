@@ -1,0 +1,122 @@
+@import "../login.less";
+
+.texture {
+  width: 204px;
+  height: auto;
+  border-radius: 8px;
+  background-color: rgb(55, 56, 61);
+  font-size: 12px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  >.title {
+    width: 180px;
+    height: 37px;
+    display: flex;
+    .flex-column-center;
+    justify-content: space-between;
+    margin: 0px 12px 0px 12px;
+    color: white;
+
+    >i {
+      font-size: 8px;
+
+      &:hover {
+        background-color: black;
+      }
+    }
+  }
+
+  .upload-img {
+    width: 204px;
+    height: 204px;
+    background-color: #777;
+    position: relative;
+    &:hover{
+      .upload-texture{
+        display: block;
+      }
+      .upload-content{
+        display: block;
+      }
+    }
+    .upload-config {
+      width: 180px;
+      height: 40px;
+      line-height: 40px;
+      margin: 0px 12px 0px 12px;
+      display: flex;
+      position: absolute;
+      justify-content: space-between;
+      z-index: 2;
+      >div {
+        >i {
+          color: white;
+          font-size: 12px;
+        }
+      }
+      >.right>i:nth-last-child(2) {
+        margin-right: 12px;
+      }
+    }
+
+    .upload-texture {
+      .full;
+      position: absolute;
+      >img {
+        position: absolute;
+        .full;
+      }
+    }
+
+    .upload-content {
+      .full;
+      position: absolute;
+      z-index: 1;
+      display: none;
+      background-color: rgba(0, 0, 0, 0.8);
+      >div>input {
+        transform: translateX(-50%);
+        left: 50%;
+        position: absolute;
+        width: 180px;
+        height: 24px;
+        background: none;
+        border: 1px solid white;
+        border-radius: 4px;
+        bottom: 16px;
+      }
+      >div {
+        >div {
+          width: 108px;
+          height: 66px;
+          color: white;
+          left: 50%;
+          top: 50%;
+          position: absolute;
+          transform: translate(-50%, -50%);
+          .flex-center;
+          flex-direction: column;
+          justify-content: space-between;
+
+          >div {}
+        }
+
+        >div>div:first-child {
+          font-size: 19px;
+          width: 19px;
+          height: 19px;
+        }
+
+      }
+      >.upload-again{
+        >div {
+          width: 48px;
+          height: 48px;
+        }
+      }
+    }
+
+  }
+}

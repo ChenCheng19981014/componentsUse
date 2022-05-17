@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Promise</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <div></div>
+  <body>
+    <script>
+      (() => {
+        let fn = () => {
+          console.log("我是函数");
+        };
+        let cc = {
+          A: (fn) => {
+            return new Promise((s, j) => setTimeout(() => fn() && s(), 3000));
+          },
+        };
+        console.log(cc.A(fn), "cc.A(fn)");
+      })();
+    </script>
+  </body>
+</html>
