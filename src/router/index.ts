@@ -88,6 +88,11 @@ const routes: RouteRecordRaw[] = [
     name: "texture",
     component: () => import("../view/component/texture"),
   },
+  {
+    path: "/https",
+    name: "https",
+    component: () => import("../view/https"),
+  },
 ];
 const router = createRouter({
   history: createWebHashHistory(),
